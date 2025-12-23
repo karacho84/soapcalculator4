@@ -28,7 +28,7 @@ const RecipeNotes: React.FC<RecipeNotesProps> = ({ notes, onUpdate }) => {
           <IonLabel position="stacked" className="ion-hide">{t('notes')}</IonLabel>
           <IonTextarea 
             value={notes} 
-            onIonChange={e => onUpdate(e.detail.value!)}
+            onIonInput={e => onUpdate(e.detail.value!)}
             rows={5}
             placeholder={t('enterNotesHere')}
             autoGrow={true}

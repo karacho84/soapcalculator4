@@ -105,7 +105,7 @@ export const OilModal: React.FC<OilModalProps> = ({
           <IonInput
             value={name}
             placeholder={t('placeholderName')}
-            onIonChange={(e) => setName(e.detail.value!)}
+            onIonInput={(e) => setName(e.detail.value!)}
           />
         </IonItem>
 
@@ -116,7 +116,7 @@ export const OilModal: React.FC<OilModalProps> = ({
             value={sapNaoh}
             placeholder="0.134"
             step="0.001"
-            onIonChange={(e) => setSapNaoh(e.detail.value!)}
+            onIonInput={(e) => setSapNaoh(e.detail.value!)}
           />
           <IonNote slot="helper">{t('sapNaohHelper')}</IonNote>
         </IonItem>
@@ -128,7 +128,7 @@ export const OilModal: React.FC<OilModalProps> = ({
             value={sapKoh}
             placeholder="0.188"
             step="0.001"
-            onIonChange={(e) => setSapKoh(e.detail.value!)}
+            onIonInput={(e) => setSapKoh(e.detail.value!)}
           />
           <IonNote slot="helper">{t('sapKohHelper')}</IonNote>
         </IonItem>
@@ -140,7 +140,7 @@ export const OilModal: React.FC<OilModalProps> = ({
             value={iodine}
             placeholder="55"
             step="1"
-            onIonChange={(e) => setIodine(e.detail.value!)}
+            onIonInput={(e) => setIodine(e.detail.value!)}
           />
           <IonNote slot="helper">{t('iodineHelper')}</IonNote>
         </IonItem>
@@ -150,7 +150,7 @@ export const OilModal: React.FC<OilModalProps> = ({
           <IonTextarea
             value={notes}
             placeholder={t('notesPlaceholder')}
-            onIonChange={(e) => setNotes(e.detail.value!)}
+            onIonInput={(e) => setNotes(e.detail.value!)}
             rows={3}
           />
         </IonItem>

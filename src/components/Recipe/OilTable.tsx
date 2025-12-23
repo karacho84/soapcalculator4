@@ -11,14 +11,13 @@ import {
   IonIcon,
   IonSelect,
   IonSelectOption,
-  IonInput,
-  IonText,
-  useIonAlert
+  IonText
 } from '@ionic/react';
-import { trashOutline, addOutline, informationCircleOutline } from 'ionicons/icons';
+import { addOutline } from 'ionicons/icons';
 import type { RecipeItem } from '../../models/Recipe';
 import type { Oil } from '../../models/Oil';
 import { useTranslation } from 'react-i18next';
+import { OilTableRow } from './OilTableRow';
 
 interface OilTableProps {
   items: RecipeItem[];
@@ -37,7 +36,6 @@ const OilTable: React.FC<OilTableProps> = ({
 }) => {
   const [selectedOilId, setSelectedOilId] = useState<string>('');
   const { t } = useTranslation();
-  const [presentAlert] = useIonAlert();
 
   const handleAddClick = () => {
     if (selectedOilId) {
@@ -67,43 +65,13 @@ const OilTable: React.FC<OilTableProps> = ({
           {items.map(item => {
             const oil = oils.find(o => o.id === item.oilId);
             return (
-              <IonRow key={item.id} className="ion-align-items-center" style={{ borderBottom: '1px solid var(--ion-border-color)' }}>
-                <IonCol size="12" sizeSm="4" className="ion-align-items-center" style={{ display: 'flex', gap: '8px' }}>
-                    <strong>{oil?.name || t('unknownOil')}</strong>
-                    {oil?.notes && (
-                      <IonIcon 
-                        icon={informationCircleOutline} 
-                        color="primary"
-                        style={{ cursor: 'pointer' }}
-                        onClick={() => presentAlert({
-                          header: oil.name,
-                          message: oil.notes,
-                          buttons: ['OK']
-                        })}
-                      />
-                    )}
-                </IonCol>
-                <IonCol size="6" sizeSm="3">
-                  <IonInput
-                    type="number"
-                    value={item.percentage === 0 ? '' : item.percentage}
-                    placeholder="%"
-                    onIonChange={e => onUpdateItem(item.id, { percentage: parseFloat(e.detail.value!) || 0 })}
-                  />
-                </IonCol>
-                <IonCol size="4" sizeSm="3">
-                  {item.weight.toFixed(1)} g
-                </IonCol>
-                <IonCol size="2" sizeSm="2">
-                  <IonButton 
-                    fill="clear" 
-                    color="danger" 
-                    onClick={() => onRemoveOil(item.id)}
-                  >
-                    <IonIcon icon={trashOutline} />
-                  </IonButton>
-                </IonCol>
-              </IonRow>
+              <OilTableRow 
+                key={item.id}
+                item={item}
+                oil={oil}
+                onUpdateItem={onUpdateItem}
+                onRemoveOil={onRemoveOil}
+              />
             );
           })}
 

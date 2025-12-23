@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   IonCard, 
   IonCardHeader, 
@@ -21,6 +21,27 @@ interface RecipeSettingsProps {
 
 const RecipeSettings: React.FC<RecipeSettingsProps> = ({ recipe, onUpdate }) => {
   const { t } = useTranslation();
+  
+  // Local state for totalFatWeight to handle "1." input cases etc.
+  const [localFatWeight, setLocalFatWeight] = useState<string>(recipe.totalFatWeight.toString());
+  const isEditingFat = useRef(false);
+
+  // Sync local state when prop changes externally (not while editing)
+  useEffect(() => {
+    if (!isEditingFat.current) {
+        setLocalFatWeight(recipe.totalFatWeight.toString());
+    }
+  }, [recipe.totalFatWeight]);
+
+  const handleFatInput = (val: string) => {
+      setLocalFatWeight(val);
+      const num = parseFloat(val);
+      if (!isNaN(num)) {
+          onUpdate({ totalFatWeight: num });
+      } else if (val === '') {
+          onUpdate({ totalFatWeight: 0 });
+      }
+  };
 
   return (
     <IonCard>
@@ -33,8 +54,10 @@ const RecipeSettings: React.FC<RecipeSettingsProps> = ({ recipe, onUpdate }) => 
           <IonLabel position="stacked">{t('totalFatWeight')}</IonLabel>
           <IonInput 
             type="number" 
-            value={recipe.totalFatWeight} 
-            onIonChange={e => onUpdate({ totalFatWeight: parseFloat(e.detail.value!) || 0 })}
+            value={localFatWeight} 
+            onIonFocus={() => isEditingFat.current = true}
+            onIonBlur={() => isEditingFat.current = false}
+            onIonInput={e => handleFatInput(e.detail.value!)}
           />
         </IonItem>
 

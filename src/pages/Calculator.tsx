@@ -98,7 +98,7 @@ const Calculator: React.FC = () => {
                   <IonInput 
                     value={recipe.name} 
                     onIonBlur={() => setIsTitleEditing(false)}
-                    onIonChange={e => updateSettings({ name: e.detail.value! })}
+                    onIonInput={e => updateSettings({ name: e.detail.value! })}
                     autofocus
                   />
               ) : (
