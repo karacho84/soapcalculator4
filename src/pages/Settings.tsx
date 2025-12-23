@@ -160,6 +160,13 @@ const Settings: React.FC = () => {
             <IonLabel>{t('help')}</IonLabel>
           </IonItem>
 
+          {/* Version */}
+          <IonItem lines="none">
+            <IonLabel className="ion-text-center" color="medium">
+              <p>{t('version')} {import.meta.env.PACKAGE_VERSION}</p>
+            </IonLabel>
+          </IonItem>
+
         </IonList>
       </IonContent>
     </IonPage>

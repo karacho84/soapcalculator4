@@ -94,5 +94,6 @@
     "backupContent": "In den **Einstellungen** kannst du ein vollständiges Backup erstellen. Dies sichert **alle** deine Öle und Rezepte in einer einzigen Datei. Ideal für den Gerätewechsel oder zur Datensicherung.",
     "oils": "Eigene Öle",
     "oilsContent": "Im **Öl-Manager** kannst du eigene Öle hinzufügen, falls diese in der Standardliste fehlen. Du benötigst dazu die Verseifungszahl (SAP) für NaOH oder KOH."
-  }
+  },
+  "version": "Version"
 }

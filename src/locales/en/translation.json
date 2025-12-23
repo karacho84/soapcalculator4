@@ -94,5 +94,6 @@
     "backupContent": "In **Settings**, you can create a full backup. This saves **all** your oils and recipes into a single file. Ideal for switching devices or data backup.",
     "oils": "Custom Oils",
     "oilsContent": "In the **Oil Manager**, you can add your own oils if they are missing from the standard list. You will need the saponification value (SAP) for NaOH or KOH."
-  }
+  },
+  "version": "Version"
 }
