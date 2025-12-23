@@ -47,32 +47,60 @@ export const OilTableRow: React.FC<OilTableRowProps> = ({
      }
   };
 
+  const hasInfo = oil?.notes || (oil?.iodine !== undefined && oil?.iodine !== null);
+
+  const showInfo = () => {
+    if (!oil) return;
+    
+    let message = '';
+    if (oil.iodine !== undefined && oil.iodine !== null) {
+      message += `${t('iodine')}: ${oil.iodine}`;
+    }
+    if (oil.notes) {
+      if (message) message += '\n\n'; // Abstand wenn beides da ist
+      message += `${t('notes')}: ${oil.notes}`;
+    }
+
+    presentAlert({
+      header: oil.name,
+      message: message,
+      buttons: ['OK']
+    });
+  };
+
   return (
       <IonRow className="ion-align-items-center" style={{ borderBottom: '1px solid var(--ion-border-color)' }}>
         <IonCol size="12" sizeSm="4" className="ion-align-items-center" style={{ display: 'flex', gap: '8px' }}>
             <strong>{oil?.name || t('unknownOil')}</strong>
-            {oil?.notes && (
+            {hasInfo && (
               <IonIcon 
                 icon={informationCircleOutline} 
                 color="primary"
                 style={{ cursor: 'pointer' }}
-                onClick={() => presentAlert({
-                  header: oil.name,
-                  message: oil.notes,
-                  buttons: ['OK']
-                })}
+                onClick={showInfo}
               />
             )}
         </IonCol>
         <IonCol size="6" sizeSm="3">
-          <IonInput
-            type="number"
-            value={localPercentage}
-            placeholder="%"
-            onIonFocus={() => isEditing.current = true}
-            onIonBlur={() => isEditing.current = false}
-            onIonInput={e => handleInput(e.detail.value!)}
-          />
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            border: '1px solid var(--ion-color-medium-tint)', 
+            borderRadius: '4px',
+            padding: '0 8px',
+            backgroundColor: 'var(--ion-color-light)'
+          }}>
+            <IonInput
+              type="number"
+              value={localPercentage}
+              placeholder="0"
+              style={{ '--padding-start': '0' }}
+              onIonFocus={() => isEditing.current = true}
+              onIonBlur={() => isEditing.current = false}
+              onIonInput={e => handleInput(e.detail.value!)}
+            />
+            <span style={{ color: 'var(--ion-color-medium)', marginLeft: '4px' }}>%</span>
+          </div>
         </IonCol>
         <IonCol size="4" sizeSm="3">
           {item.weight.toFixed(1)} g
