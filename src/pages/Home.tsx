@@ -198,7 +198,7 @@ const Home: React.FC = () => {
             <p>{t('createFirstRecipe')}</p>
           </div>
         ) : (
-          <IonList>
+          <IonList style={{ paddingBottom: '120px' }}>
             {recipes.map(recipe => (
               <IonItemSliding key={recipe.id}>
                 <IonItem 

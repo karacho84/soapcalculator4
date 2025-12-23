@@ -159,7 +159,7 @@ const OilManager: React.FC = () => {
             accept=".json"
             onChange={handleFileChange}
         />
-        <IonList>
+        <IonList style={{ paddingBottom: '120px' }}>
           {oils.map((oil) => {
              const isIncomplete = oil.sapNaoh === undefined || oil.sapKoh === undefined;
              return (
