@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6daedb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a90e2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="512" height="512" rx="100" fill="url(#bgGradient)"/>
+
+  <g transform="translate(106, 156)" filter="url(#shadow)">
+    <rect x="0" y="0" width="300" height="200" rx="40" fill="#fdfbf7"/>
+    <path d="M 40 40 L 260 40 A 20 20 0 0 1 260 160 L 40 160 A 20 20 0 0 1 40 40" fill="#f0e6d2" opacity="0.3"/>
+    
+    <text x="150" y="135" font-family="Arial, sans-serif" font-size="100" font-weight="bold" fill="#4a90e2" text-anchor="middle" opacity="0.8">%</text>
+  </g>
+
+  <circle cx="380" cy="120" r="30" fill="white" opacity="0.6"/>
+  <circle cx="420" cy="160" r="15" fill="white" opacity="0.5"/>
+  <circle cx="100" cy="400" r="20" fill="white" opacity="0.4"/>
+</svg>
