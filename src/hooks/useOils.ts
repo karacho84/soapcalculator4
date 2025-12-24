@@ -2,8 +2,11 @@ import { useState, useCallback } from 'react';
 import type { Oil } from '../models/Oil';
 import { StorageService } from '../services/StorageService';
 import { DEFAULT_OILS } from '../data/defaultOils';
+import { useCloudSync } from './useCloudSync';
 
 export const useOils = () => {
+  const { syncNow, isAuthenticated } = useCloudSync();
+
   const [oils, setOils] = useState<Oil[]>(() => {
     const storedOils = StorageService.getOils();
     if (storedOils.length === 0) {
@@ -29,7 +32,8 @@ export const useOils = () => {
         StorageService.saveOils(newOils);
         return newOils;
     });
-  }, []);
+    if (isAuthenticated) syncNow();
+  }, [isAuthenticated, syncNow]);
 
   const updateOil = useCallback((updatedOil: Oil) => {
       setOils(prevOils => {
@@ -37,7 +41,8 @@ export const useOils = () => {
           StorageService.saveOils(newOils);
           return newOils;
       });
-  }, []);
+      if (isAuthenticated) syncNow();
+  }, [isAuthenticated, syncNow]);
 
   const deleteOil = useCallback((id: string) => {
     setOils(prevOils => {
@@ -45,12 +50,14 @@ export const useOils = () => {
         StorageService.saveOils(newOils);
         return newOils;
     });
-  }, []);
+    if (isAuthenticated) syncNow();
+  }, [isAuthenticated, syncNow]);
 
   const resetOils = useCallback(() => {
     setOils(DEFAULT_OILS);
     StorageService.saveOils(DEFAULT_OILS);
-  }, []);
+    if (isAuthenticated) syncNow();
+  }, [isAuthenticated, syncNow]);
 
   return {
     oils,

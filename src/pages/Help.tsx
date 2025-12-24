@@ -23,6 +23,7 @@ const Help: React.FC = () => {
     { key: 'basics', title: t('helpTopics.basics'), content: t('helpTopics.basicsContent') },
     { key: 'export', title: t('helpTopics.export'), content: t('helpTopics.exportContent') },
     { key: 'backup', title: t('helpTopics.backup'), content: t('helpTopics.backupContent') },
+    { key: 'sync', title: t('helpTopics.sync'), content: t('helpTopics.syncContent') },
     { key: 'oils', title: t('helpTopics.oils'), content: t('helpTopics.oilsContent') },
   ];
 

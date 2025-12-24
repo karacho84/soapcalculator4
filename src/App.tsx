@@ -6,7 +6,8 @@ import Calculator from './pages/Calculator';
 import Settings from './pages/Settings';
 import Help from './pages/Help';
 import Home from './pages/Home';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useCloudSync } from './hooks/useCloudSync';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -29,7 +30,28 @@ import './theme/variables.css';
 
 setupIonicReact();
 
-const App: React.FC = () => (
+const App: React.FC = () => {
+  const { isAuthenticated, syncNow } = useCloudSync();
+
+  useEffect(() => {
+    // Auto-sync on app start if authenticated
+    if (isAuthenticated) {
+        // Pull latest data (or decide strategy: push local first? Merge?)
+        // Currently syncNow triggers push. 
+        // For app start, we probably want to PULL to get updates from other devices.
+        // BUT: if we pull, we might overwrite local unsaved changes.
+        // Safer strategy for MVP: 
+        // 1. Manual sync in settings is primary way.
+        // 2. Or, create a separate "initialize" function in hook that pulls once.
+        // For now, let's stick to manual sync to avoid data loss until conflict resolution is robust.
+        // Or better: Push on start to ensure latest local is saved?
+        
+        // Let's implement auto-push on start to ensure backup.
+        syncNow();
+    }
+  }, [isAuthenticated]);
+
+  return (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
@@ -41,6 +63,7 @@ const App: React.FC = () => (
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
-);
+  );
+};
 
 export default App;

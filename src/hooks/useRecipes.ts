@@ -1,8 +1,11 @@
 import { useState, useCallback } from 'react';
 import type { Recipe } from '../models/Recipe';
 import { StorageService } from '../services/StorageService';
+import { useCloudSync } from './useCloudSync';
 
 export const useRecipes = () => {
+  const { syncNow, isAuthenticated } = useCloudSync();
+
   // Initialize state directly with data from storage
   const [recipes, setRecipes] = useState<Recipe[]>(() => {
     const storedRecipes = StorageService.getRecipes();
@@ -23,12 +26,18 @@ export const useRecipes = () => {
   const deleteRecipe = useCallback((id: string) => {
     StorageService.deleteRecipe(id);
     loadRecipes();
-  }, [loadRecipes]);
+    if (isAuthenticated) {
+        syncNow();
+    }
+  }, [loadRecipes, isAuthenticated, syncNow]);
 
   const saveRecipe = useCallback((recipe: Recipe) => {
     StorageService.saveRecipe(recipe);
     loadRecipes();
-  }, [loadRecipes]);
+    if (isAuthenticated) {
+        syncNow();
+    }
+  }, [loadRecipes, isAuthenticated, syncNow]);
 
   return {
     recipes,
