@@ -335,7 +335,7 @@ const Settings: React.FC = () => {
           </IonItem>
 
           {/* Version */}
-          <IonItem lines="none">
+          <IonItem lines="none" button onClick={() => window.location.reload()} detail={false}>
             <IonLabel className="ion-text-center" color="medium">
               <p>{t('version')} {import.meta.env.PACKAGE_VERSION}</p>
             </IonLabel>

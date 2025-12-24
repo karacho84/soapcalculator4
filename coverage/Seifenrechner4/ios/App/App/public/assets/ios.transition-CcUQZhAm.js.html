@@ -1,0 +1,88 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for Seifenrechner4/ios/App/App/public/assets/ios.transition-CcUQZhAm.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../../../../index.html">All files</a> / <a href="index.html">Seifenrechner4/ios/App/App/public/assets</a> ios.transition-CcUQZhAm.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import{n as a,o as Z}from"./index-BbccHw9o.js";const j=540,z=o=&gt;document.querySelector(`${o}.ion-cloned-element`),I=o=&gt;o.shadowRoot||o,P=o=&gt;{const i=o.tagName==="ION-TABS"?o:o.querySelector("ion-tabs"),l="ion-content ion-header:not(.header-collapse-condense-inactive) ion-title.title-large";if(i!=null){const e=i.querySelector("ion-tab:not(.tab-hidden), .ion-page:not(.ion-page-hidden)");return e!=null?e.querySelector(l):null}return o.querySelector(l)},D=(o,i)=&gt;{const l=o.tagName==="ION-TABS"?o:o.querySelector("ion-tabs");let e=[];if(l!=null){const t=l.querySelector("ion-tab:not(.tab-hidden), .ion-page:not(.ion-page-hidden)");t!=null&amp;&amp;(e=t.querySelectorAll("ion-buttons"))}else e=o.querySelectorAll("ion-buttons");for(const t of e){const A=t.closest("ion-header"),E=A&amp;&amp;!A.classList.contains("header-collapse-condense-inactive"),h=t.querySelector("ion-back-button"),r=t.classList.contains("buttons-collapse"),g=t.slot==="start"||t.slot==="";if(h!==null&amp;&amp;g&amp;&amp;(r&amp;&amp;E&amp;&amp;i||!r))return h}return null},J=(o,i,l,e,t)=&gt;{const A=D(e,l),E=P(t),h=P(e),r=D(t,l),g=A!==null&amp;&amp;E!==null&amp;&amp;!l,u=h!==null&amp;&amp;r!==null&amp;&amp;l;if(g){const S=E.getBoundingClientRect(),f=A.getBoundingClientRect(),c=I(A).querySelector(".button-text"),C=c?.getBoundingClientRect(),y=I(E).querySelector(".toolbar-title").getBoundingClientRect();G(o,i,l,E,S,y,f,c,C),k(o,i,l,A,f,c,C,E,y)}else if(u){const S=h.getBoundingClientRect(),f=r.getBoundingClientRect(),c=I(r).querySelector(".button-text"),C=c?.getBoundingClientRect(),y=I(h).querySelector(".toolbar-title").getBoundingClientRect();G(o,i,l,h,S,y,f,c,C),k(o,i,l,r,f,c,C,h,y)}return{forward:g,backward:u}},k=(o,i,l,e,t,A,E,h,r)=&gt;{var g,u;const S=i?`calc(100% - ${t.right+4}px)`:`${t.left-4}px`,f=i?"right":"left",c=i?"left":"right",C=i?"right":"left";let L=1,y=1,T=`scale(${y})`;const b="scale(1)";if(A&amp;&amp;E){const Y=((g=A.textContent)===null||g===void 0?void 0:g.trim())===((u=h.textContent)===null||u===void 0?void 0:u.trim());L=r.width/E.width,y=(r.height-U)/E.height,T=Y?`scale(${L}, ${y})`:`scale(${y})`}const x=I(e).querySelector("ion-icon").getBoundingClientRect(),W=i?`${x.width/2-(x.right-t.right)}px`:`${t.left-x.width/2}px`,n=i?`-${window.innerWidth-t.right}px`:`${t.left}px`,p=`${r.top}px`,$=`${t.top}px`,v=[{offset:0,transform:`translate3d(${W}, ${p}, 0)`},{offset:1,transform:`translate3d(${n}, ${$}, 0)`}],s=[{offset:0,transform:`translate3d(${n}, ${$}, 0)`},{offset:1,transform:`translate3d(${W}, ${p}, 0)`}],d=l?s:v,q=l?[{offset:0,opacity:1,transform:b},{offset:1,opacity:0,transform:T}]:[{offset:0,opacity:0,transform:T},{offset:1,opacity:1,transform:b}],w=l?[{offset:0,opacity:1,transform:"scale(1)"},{offset:.2,opacity:0,transform:"scale(0.6)"},{offset:1,opacity:0,transform:"scale(0.6)"}]:[{offset:0,opacity:0,transform:"scale(0.6)"},{offset:.6,opacity:0,transform:"scale(0.6)"},{offset:1,opacity:1,transform:"scale(1)"}],N=a(),F=a(),B=a(),m=z("ion-back-button"),M=I(m).querySelector(".button-text"),H=I(m).querySelector("ion-icon");m.text=e.text,m.mode=e.mode,m.icon=e.icon,m.color=e.color,m.disabled=e.disabled,m.style.setProperty("display","block"),m.style.setProperty("position","fixed"),F.addElement(H),N.addElement(M),B.addElement(m),B.beforeStyles({position:"absolute",top:"0px",[C]:"0px"}).beforeAddWrite(()=&gt;{e.style.setProperty("display","none"),m.style.setProperty(f,S)}).afterAddWrite(()=&gt;{e.style.setProperty("display",""),m.style.setProperty("display","none"),m.style.removeProperty(f)}).keyframes(d),N.beforeStyles({"transform-origin":`${f} top`}).keyframes(q),F.beforeStyles({"transform-origin":`${c} center`}).keyframes(w),o.addAnimation([N,F,B])},G=(o,i,l,e,t,A,E,h,r)=&gt;{var g,u;const S=i?"right":"left",f=i?`calc(100% - ${t.right}px)`:`${t.left}px`,c="0px",C=`${t.top}px`,L=8;let y=i?`-${window.innerWidth-E.right-L}px`:`${E.x+L}px`,T=.5;const b="scale(1)";let K=`scale(${T})`;if(h&amp;&amp;r){y=i?`-${window.innerWidth-r.right-L}px`:`${r.x-L}px`;const X=((g=h.textContent)===null||g===void 0?void 0:g.trim())===((u=e.textContent)===null||u===void 0?void 0:u.trim()),_=r.width/A.width;T=r.height/(A.height-U),K=X?`scale(${_}, ${T})`:`scale(${T})`}const x=E.top+E.height/2,W=t.height*T/2,n=`${x-W}px`,p=[{offset:0,opacity:0,transform:`translate3d(${y}, ${n}, 0) ${K}`},{offset:.1,opacity:0},{offset:1,opacity:1,transform:`translate3d(${c}, ${C}, 0) ${b}`}],$=[{offset:0,opacity:.99,transform:`translate3d(${c}, ${C}, 0) ${b}`},{offset:.6,opacity:0},{offset:1,opacity:0,transform:`translate3d(${y}, ${n}, 0) ${K}`}],v=l?p:$,s=z("ion-title"),d=a();s.innerText=e.innerText,s.size=e.size,s.color=e.color,d.addElement(s),d.beforeStyles({"transform-origin":`${S} top`,height:`${t.height}px`,display:"",position:"relative",[S]:f}).beforeAddWrite(()=&gt;{e.style.setProperty("opacity","0")}).afterAddWrite(()=&gt;{e.style.setProperty("opacity",""),s.style.setProperty("display","none")}).keyframes(v),o.addAnimation(d)},V=(o,i)=&gt;{var l;try{const e="cubic-bezier(0.32,0.72,0,1)",t="opacity",A="transform",r=o.ownerDocument.dir==="rtl",g=r?"-99.5%":"99.5%",u=r?"33%":"-33%",S=i.enteringEl,f=i.leavingEl,c=i.direction==="back",C=S.querySelector(":scope &gt; ion-content"),L=S.querySelectorAll(":scope &gt; ion-header &gt; *:not(ion-toolbar), :scope &gt; ion-footer &gt; *"),y=S.querySelectorAll(":scope &gt; ion-header &gt; ion-toolbar"),T=a(),b=a();if(T.addElement(S).duration(((l=i.duration)!==null&amp;&amp;l!==void 0?l:0)||j).easing(i.easing||e).fill("both").beforeRemoveClass("ion-page-invisible"),f&amp;&amp;o!==null&amp;&amp;o!==void 0){const n=a();n.addElement(o),T.addAnimation(n)}if(!C&amp;&amp;y.length===0&amp;&amp;L.length===0?b.addElement(S.querySelector(":scope &gt; .ion-page, :scope &gt; ion-nav, :scope &gt; ion-tabs")):(b.addElement(C),b.addElement(L)),T.addAnimation(b),c?b.beforeClearStyles([t]).fromTo("transform",`translateX(${u})`,"translateX(0%)").fromTo(t,.8,1):b.beforeClearStyles([t]).fromTo("transform",`translateX(${g})`,"translateX(0%)"),C){const n=I(C).querySelector(".transition-effect");if(n){const p=n.querySelector(".transition-cover"),$=n.querySelector(".transition-shadow"),v=a(),s=a(),d=a();v.addElement(n).beforeStyles({opacity:"1",display:"block"}).afterStyles({opacity:"",display:""}),s.addElement(p).beforeClearStyles([t]).fromTo(t,0,.1),d.addElement($).beforeClearStyles([t]).fromTo(t,.03,.7),v.addAnimation([s,d]),b.addAnimation([v])}}const K=S.querySelector("ion-header.header-collapse-condense"),{forward:x,backward:W}=J(T,r,c,S,f);if(y.forEach(n=&gt;{const p=a();p.addElement(n),T.addAnimation(p);const $=a();$.addElement(n.querySelector("ion-title"));const v=a(),s=Array.from(n.querySelectorAll("ion-buttons,[menuToggle]")),d=n.closest("ion-header"),X=d?.classList.contains("header-collapse-condense-inactive");let _;c?_=s.filter(N=&gt;{const F=N.classList.contains("buttons-collapse");return F&amp;&amp;!X||!F}):_=s.filter(N=&gt;!N.classList.contains("buttons-collapse")),v.addElement(_);const q=a();q.addElement(n.querySelectorAll(":scope &gt; *:not(ion-title):not(ion-buttons):not([menuToggle])"));const R=a();R.addElement(I(n).querySelector(".toolbar-background"));const O=a(),w=n.querySelector("ion-back-button");if(w&amp;&amp;O.addElement(w),p.addAnimation([$,v,q,R,O]),v.fromTo(t,.01,1),q.fromTo(t,.01,1),c)X||$.fromTo("transform",`translateX(${u})`,"translateX(0%)").fromTo(t,.01,1),q.fromTo("transform",`translateX(${u})`,"translateX(0%)"),O.fromTo(t,.01,1);else if(K||$.fromTo("transform",`translateX(${g})`,"translateX(0%)").fromTo(t,.01,1),q.fromTo("transform",`translateX(${g})`,"translateX(0%)"),R.beforeClearStyles([t,"transform"]),d?.translucent?R.fromTo("transform",r?"translateX(-100%)":"translateX(100%)","translateX(0px)"):R.fromTo(t,.01,"var(--opacity)"),x||O.fromTo(t,.01,1),w&amp;&amp;!x){const F=a();F.addElement(I(w).querySelector(".button-text")).fromTo("transform",r?"translateX(-100px)":"translateX(100px)","translateX(0px)"),p.addAnimation(F)}}),f){const n=a(),p=f.querySelector(":scope &gt; ion-content"),$=f.querySelectorAll(":scope &gt; ion-header &gt; ion-toolbar"),v=f.querySelectorAll(":scope &gt; ion-header &gt; *:not(ion-toolbar), :scope &gt; ion-footer &gt; *");if(!p&amp;&amp;$.length===0&amp;&amp;v.length===0?n.addElement(f.querySelector(":scope &gt; .ion-page, :scope &gt; ion-nav, :scope &gt; ion-tabs")):(n.addElement(p),n.addElement(v)),T.addAnimation(n),c){n.beforeClearStyles([t]).fromTo("transform","translateX(0%)",r?"translateX(-100%)":"translateX(100%)");const s=Z(f);T.afterAddWrite(()=&gt;{T.getDirection()==="normal"&amp;&amp;s.style.setProperty("display","none")})}else n.fromTo("transform","translateX(0%)",`translateX(${u})`).fromTo(t,1,.8);if(p){const s=I(p).querySelector(".transition-effect");if(s){const d=s.querySelector(".transition-cover"),X=s.querySelector(".transition-shadow"),_=a(),q=a(),R=a();_.addElement(s).beforeStyles({opacity:"1",display:"block"}).afterStyles({opacity:"",display:""}),q.addElement(d).beforeClearStyles([t]).fromTo(t,.1,0),R.addElement(X).beforeClearStyles([t]).fromTo(t,.7,.03),_.addAnimation([q,R]),n.addAnimation([_])}}$.forEach(s=&gt;{const d=a();d.addElement(s);const X=a();X.addElement(s.querySelector("ion-title"));const _=a(),q=s.querySelectorAll("ion-buttons,[menuToggle]"),R=s.closest("ion-header"),O=R?.classList.contains("header-collapse-condense-inactive"),w=Array.from(q).filter(H=&gt;{const Y=H.classList.contains("buttons-collapse");return Y&amp;&amp;!O||!Y});_.addElement(w);const N=a(),F=s.querySelectorAll(":scope &gt; *:not(ion-title):not(ion-buttons):not([menuToggle])");F.length&gt;0&amp;&amp;N.addElement(F);const B=a();B.addElement(I(s).querySelector(".toolbar-background"));const m=a(),M=s.querySelector("ion-back-button");if(M&amp;&amp;m.addElement(M),d.addAnimation([X,_,N,m,B]),T.addAnimation(d),m.fromTo(t,.99,0),_.fromTo(t,.99,0),N.fromTo(t,.99,0),c){if(O||X.fromTo("transform","translateX(0%)",r?"translateX(-100%)":"translateX(100%)").fromTo(t,.99,0),N.fromTo("transform","translateX(0%)",r?"translateX(-100%)":"translateX(100%)"),B.beforeClearStyles([t,"transform"]),R?.translucent?B.fromTo("transform","translateX(0px)",r?"translateX(-100%)":"translateX(100%)"):B.fromTo(t,"var(--opacity)",0),M&amp;&amp;!W){const Y=a();Y.addElement(I(M).querySelector(".button-text")).fromTo("transform","translateX(0%)",`translateX(${(r?-124:124)+"px"})`),d.addAnimation(Y)}}else O||X.fromTo("transform","translateX(0%)",`translateX(${u})`).fromTo(t,.99,0).afterClearStyles([A,t]),N.fromTo("transform","translateX(0%)",`translateX(${u})`).afterClearStyles([A,t]),m.afterClearStyles([t]),X.afterClearStyles([t]),_.afterClearStyles([t])})}return T}catch(e){throw e}},U=10;export{V as iosTransitionAnimation,I as shadow};<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2025-12-24T12:14:12.550Z
+            </div>
+        <script src="../../../../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../../../../sorter.js"></script>
+        <script src="../../../../../../block-navigation.js"></script>
+    </body>
+</html>
+    

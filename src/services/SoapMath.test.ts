@@ -98,4 +98,66 @@ describe('SoapMath', () => {
     const result = SoapMath.calculate(recipe, mockOils);
     expect(result.warnings.length).toBeGreaterThan(0);
   });
+
+  it('should use custom SAP values if provided', () => {
+    const recipe: Recipe = {
+      id: 'test',
+      name: 'Custom SAP',
+      created: new Date(),
+      totalFatWeight: 1000,
+      superFat: 5,
+      waterRatio: 33,
+      lyeType: 'NaOH',
+      items: [
+        { 
+          id: '1', recipeId: 'r1', oilId: '1', percentage: 100, weight: 1000, 
+          isCustomSap: true, customSapNaoh: 0.15 
+        }
+      ]
+    };
+    const result = SoapMath.calculate(recipe, mockOils);
+    // 1000 * 0.15 * 0.95 = 142.5
+    expect(result.lyeAmount.naoh).toBe(142.5);
+  });
+
+  it('should handle fragrance calculation', () => {
+    const recipe: Recipe = {
+      id: 'test',
+      name: 'Fragrance Test',
+      created: new Date(),
+      totalFatWeight: 1000,
+      superFat: 5,
+      waterRatio: 33,
+      lyeType: 'NaOH',
+      fragrance: {
+        name: 'Lavender',
+        percentage: 3,
+        type: 'essential'
+      },
+      items: [
+        { id: '1', recipeId: 'r1', oilId: '1', percentage: 100, weight: 1000, isCustomSap: false }
+      ]
+    };
+    const result = SoapMath.calculate(recipe, mockOils);
+    // 3% of 1000g = 30g
+    expect(result.fragranceAmount).toBe(30);
+  });
+
+  it('should add warnings for missing oils', () => {
+    const recipe: Recipe = {
+      id: 'test',
+      name: 'Missing Oil',
+      created: new Date(),
+      totalFatWeight: 1000,
+      superFat: 5,
+      waterRatio: 33,
+      lyeType: 'NaOH',
+      items: [
+        { id: '1', recipeId: 'r1', oilId: 'non-existent', percentage: 100, weight: 1000, isCustomSap: false }
+      ]
+    };
+    const result = SoapMath.calculate(recipe, mockOils);
+    expect(result.isValid).toBe(false);
+    expect(result.warnings).toContain('Oil with ID non-existent not found.');
+  });
 });

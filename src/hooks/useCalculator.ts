@@ -4,6 +4,7 @@ import type { Recipe, RecipeItem } from '../models/Recipe';
 import { SoapMath } from '../services/SoapMath';
 import { useOils } from './useOils';
 import { StorageService } from '../services/StorageService';
+import { useCloudSync } from './useCloudSync';
 
 const DEFAULT_RECIPE: Recipe = {
   id: '',
@@ -29,6 +30,7 @@ const calculateItemWeight = (totalFat: number, percentage: number): number => {
 
 export const useCalculator = (initialRecipeId?: string) => {
   const { oils } = useOils();
+  const { syncNow, isAuthenticated } = useCloudSync();
   const [recipe, setRecipe] = useState<Recipe>(createNewRecipe);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isDirty, setIsDirty] = useState(false);
@@ -124,7 +126,10 @@ export const useCalculator = (initialRecipeId?: string) => {
   const saveCurrentRecipe = useCallback(() => {
     StorageService.saveRecipe(recipe);
     setIsDirty(false);
-  }, [recipe]);
+    if (isAuthenticated) {
+      syncNow();
+    }
+  }, [recipe, isAuthenticated, syncNow]);
 
   return {
     recipe,
