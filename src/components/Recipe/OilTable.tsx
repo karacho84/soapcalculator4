@@ -62,18 +62,25 @@ const OilTable: React.FC<OilTableProps> = ({
             <IonCol size="2"></IonCol>
           </IonRow>
 
-          {items.map(item => {
-            const oil = oils.find(o => o.id === item.oilId);
-            return (
-              <OilTableRow 
-                key={item.id}
-                item={item}
-                oil={oil}
-                onUpdateItem={onUpdateItem}
-                onRemoveOil={onRemoveOil}
-              />
-            );
-          })}
+          {items.length === 0 ? (
+            <div className="ion-padding ion-text-center" style={{ opacity: 0.6, padding: '40px 0' }}>
+              <IonIcon icon={addOutline} style={{ fontSize: '48px' }} />
+              <p>{t('selectOilToAdd') || 'Wähle ein Öl aus, um es hinzuzufügen'}</p>
+            </div>
+          ) : (
+            items.map(item => {
+              const oil = oils.find(o => o.id === item.oilId);
+              return (
+                <OilTableRow 
+                  key={item.id}
+                  item={item}
+                  oil={oil}
+                  onUpdateItem={onUpdateItem}
+                  onRemoveOil={onRemoveOil}
+                />
+              );
+            })
+          )}
 
           {/* Footer / Add Row */}
           <IonRow className="ion-margin-top ion-align-items-center">
@@ -111,12 +118,19 @@ const OilTable: React.FC<OilTableProps> = ({
                   <strong>{t('sum')}:</strong>
               </IonCol>
               <IonCol size="6" sizeSm="3">
-                  <IonText color={!isPercentageValid ? 'danger' : 'success'}>
-                      <strong>{totalPercentage.toFixed(1)} %</strong>
-                  </IonText>
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <IonText color={!isPercentageValid ? 'danger' : 'success'}>
+                        <strong style={{ fontSize: '1.2em' }}>{totalPercentage.toFixed(1)} %</strong>
+                    </IonText>
+                    {!isPercentageValid && (
+                        <small style={{ color: 'var(--ion-color-danger)' }}>
+                            {t('sumOfOilsWarning', { value: totalPercentage.toFixed(1) })}
+                        </small>
+                    )}
+                  </div>
               </IonCol>
-              <IonCol size="6" sizeSm="5">
-                  <strong>{totalWeight.toFixed(1)} g</strong>
+              <IonCol size="6" sizeSm="5" className="ion-text-end ion-text-sm-start">
+                  <strong style={{ fontSize: '1.2em' }}>{totalWeight.toFixed(1)} g</strong>
               </IonCol>
           </IonRow>
 

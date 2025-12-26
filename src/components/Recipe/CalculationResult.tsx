@@ -38,22 +38,22 @@ const CalculationResultCard: React.FC<CalculationResultProps> = ({ result }) => 
 
         <IonGrid>
           {/* Required Lye */}
-          <IonRow className="ion-align-items-center ion-margin-bottom" style={{ borderBottom: '1px solid var(--ion-border-color)', paddingBottom: '10px' }}>
+          <IonRow className="ion-align-items-center ion-margin-bottom" style={{ borderBottom: '1px solid var(--ion-border-color)', paddingBottom: '12px' }}>
             <IonCol size="12" sizeSm="6">
               <IonText>
-                <h2 style={{ margin: '0 0 4px 0', fontSize: '1.1em' }}>{t('requiredLye')}</h2>
+                <h2 style={{ margin: '0 0 4px 0', fontSize: '1.2em', fontWeight: 'bold' }}>{t('requiredLye')}</h2>
                 <p style={{ margin: 0, color: 'var(--ion-color-medium)', fontSize: '0.9em' }}>{t('amountNaohKoh')}</p>
               </IonText>
             </IonCol>
             <IonCol size="12" sizeSm="6" className="ion-text-end">
                <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
                  {result.lyeAmount.naoh > 0 && (
-                     <IonBadge color="primary" style={{ fontSize: '1em', padding: '8px 12px' }}>
+                     <IonBadge color="primary" style={{ fontSize: '1.2em', padding: '10px 14px' }}>
                          {result.lyeAmount.naoh} g NaOH
                      </IonBadge>
                  )}
                  {result.lyeAmount.koh > 0 && (
-                     <IonBadge color="tertiary" style={{ fontSize: '1em', padding: '8px 12px' }}>
+                     <IonBadge color="tertiary" style={{ fontSize: '1.2em', padding: '10px 14px' }}>
                          {result.lyeAmount.koh} g KOH
                      </IonBadge>
                  )}
@@ -62,15 +62,15 @@ const CalculationResultCard: React.FC<CalculationResultProps> = ({ result }) => 
           </IonRow>
 
           {/* Liquid */}
-          <IonRow className="ion-align-items-center ion-margin-bottom" style={{ borderBottom: '1px solid var(--ion-border-color)', paddingBottom: '10px' }}>
+          <IonRow className="ion-align-items-center ion-margin-bottom" style={{ borderBottom: '1px solid var(--ion-border-color)', paddingBottom: '12px' }}>
             <IonCol size="8">
               <IonText>
-                <h2 style={{ margin: '0 0 4px 0', fontSize: '1.1em' }}>{t('waterLiquid')}</h2>
+                <h2 style={{ margin: '0 0 4px 0', fontSize: '1.2em', fontWeight: 'bold' }}>{t('waterLiquid')}</h2>
                 <p style={{ margin: 0, color: 'var(--ion-color-medium)', fontSize: '0.9em' }}>{t('forLye')}</p>
               </IonText>
             </IonCol>
             <IonCol size="4" className="ion-text-end">
-               <IonBadge color="secondary" style={{ fontSize: '1em', padding: '8px 12px' }}>
+               <IonBadge color="secondary" style={{ fontSize: '1.2em', padding: '10px 14px' }}>
                    {result.waterAmount} g
                </IonBadge>
             </IonCol>

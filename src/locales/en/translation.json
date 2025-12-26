@@ -114,5 +114,7 @@
     "oils": "Custom Oils",
     "oilsContent": "In the **Oil Manager**, you can add your own oils if they are missing from the standard list. You will need the saponification value (SAP) for NaOH or KOH."
   },
+  "selectOilToAdd": "Select an oil from the list",
+  "sumOfOilsWarning": "Sum of oils: {{value}}% (target: 100%)",
   "version": "Version"
 }

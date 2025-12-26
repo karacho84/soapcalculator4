@@ -122,7 +122,7 @@ const Calculator: React.FC = () => {
         <IonGrid fixed>
           <IonRow>
             {/* Left Column: Oil Table */}
-            <IonCol size="12" sizeMd="7" sizeLg="8">
+            <IonCol size="12" sizeLg="4">
                <OilTable 
                  items={recipe.items} 
                  oils={availableOils} 
@@ -132,23 +132,24 @@ const Calculator: React.FC = () => {
                />
             </IonCol>
 
-            {/* Right Column: Settings & Result */}
-            <IonCol size="12" sizeMd="5" sizeLg="4">
+            {/* Middle Column: Settings */}
+            <IonCol size="12" sizeLg="4">
                <RecipeSettings 
                  recipe={recipe} 
                  onUpdate={updateSettings} 
                />
                
                <div className="ion-margin-top">
-                   <CalculationResultCard result={calculationResult} />
-               </div>
-
-               <div className="ion-margin-top">
                  <RecipeNotes 
                    notes={recipe.notes} 
                    onUpdate={notes => updateSettings({ notes })} 
                  />
                </div>
+            </IonCol>
+
+            {/* Right Column: Result */}
+            <IonCol size="12" sizeLg="4">
+               <CalculationResultCard result={calculationResult} />
             </IonCol>
           </IonRow>
         </IonGrid>

@@ -34,11 +34,14 @@ export const SoapMath = {
     // Helper to find oil
     const getOil = (id: string) => oils.find((o) => o.id === id);
 
+    const lang = localStorage.getItem('i18nextLng') || 'de';
+    const isDe = lang.startsWith('de');
+
     // 1. Calculate Lye for each item
     items.forEach((item) => {
       const oil = getOil(item.oilId);
       if (!oil) {
-        warnings.push(`Oil with ID ${item.oilId} not found.`);
+        warnings.push(isDe ? `Öl mit ID ${item.oilId} nicht gefunden.` : `Oil with ID ${item.oilId} not found.`);
         return;
       }
 
@@ -51,7 +54,7 @@ export const SoapMath = {
       let sapKoh = oil.sapKoh || 0; 
       
       if (!item.isCustomSap && (oil.sapNaoh === undefined || oil.sapKoh === undefined)) {
-          warnings.push(`Oil "${oil.name}" has missing SAP values. Treated as 0.`);
+          warnings.push(isDe ? `Öl "${oil.name}" hat keine Verseifungswerte. Wird als 0 berechnet.` : `Oil "${oil.name}" has missing SAP values. Treated as 0.`);
       }
 
       // If custom SAP is provided (usually NaOH), estimate KOH if needed.
@@ -85,7 +88,7 @@ export const SoapMath = {
 
     // 2. Validate Totals
     if (Math.abs(currentTotalPercentage - 100) > PERCENTAGE_EPSILON) {
-      warnings.push(`Sum of oils is ${currentTotalPercentage.toFixed(1)}% (should be 100%).`);
+      warnings.push(isDe ? `Summe der Öle ist ${currentTotalPercentage.toFixed(1)}% (sollte 100% sein).` : `Sum of oils is ${currentTotalPercentage.toFixed(1)}% (should be 100%).`);
     }
 
     // 3. Apply Superfat

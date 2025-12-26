@@ -9,8 +9,11 @@ import {
   IonInput, 
   IonSelect, 
   IonSelectOption, 
-  IonRange 
+  IonRange,
+  IonButton,
+  IonIcon
 } from '@ionic/react';
+import { removeOutline, addOutline } from 'ionicons/icons';
 import type { Recipe, LyeType } from '../../models/Recipe';
 import { useTranslation } from 'react-i18next';
 
@@ -43,6 +46,12 @@ const RecipeSettings: React.FC<RecipeSettingsProps> = ({ recipe, onUpdate }) => 
       }
   };
 
+  const adjustFatWeight = (amount: number) => {
+      const current = parseFloat(localFatWeight) || 0;
+      const newValue = Math.max(0, current + amount);
+      handleFatInput(newValue.toString());
+  };
+
   return (
     <IonCard>
       <IonCardHeader>
@@ -50,24 +59,53 @@ const RecipeSettings: React.FC<RecipeSettingsProps> = ({ recipe, onUpdate }) => 
       </IonCardHeader>
       <IonCardContent>
         {/* Total Fat Weight */}
-        <IonItem>
-          <IonLabel position="stacked">{t('totalFatWeight')}</IonLabel>
-          <IonInput 
-            type="number" 
-            value={localFatWeight} 
-            onIonFocus={() => isEditingFat.current = true}
-            onIonBlur={() => isEditingFat.current = false}
-            onIonInput={e => handleFatInput(e.detail.value!)}
-          />
+        <IonItem lines="none">
+          <IonLabel position="stacked" style={{ fontSize: '1.1em', fontWeight: '500' }}>{t('totalFatWeight')}</IonLabel>
+          <div style={{ display: 'flex', alignItems: 'center', width: '100%', marginTop: '8px', gap: '8px' }}>
+            <IonButton 
+              fill="clear" 
+              color="medium" 
+              onClick={() => adjustFatWeight(-10)}
+              style={{ margin: 0 }}
+            >
+              <IonIcon slot="icon-only" icon={removeOutline} />
+            </IonButton>
+            
+            <IonInput 
+              type="number" 
+              value={localFatWeight} 
+              onIonFocus={() => isEditingFat.current = true}
+              onIonBlur={() => isEditingFat.current = false}
+              onIonInput={e => handleFatInput(e.detail.value!)}
+              style={{ 
+                fontSize: '1.4em', 
+                fontWeight: 'bold', 
+                textAlign: 'center',
+                border: '1px solid var(--ion-border-color)',
+                borderRadius: '8px',
+                margin: '0 4px'
+              }}
+            />
+
+            <IonButton 
+              fill="clear" 
+              color="medium" 
+              onClick={() => adjustFatWeight(10)}
+              style={{ margin: 0 }}
+            >
+              <IonIcon slot="icon-only" icon={addOutline} />
+            </IonButton>
+          </div>
         </IonItem>
 
         {/* Lye Type */}
         <IonItem>
-          <IonLabel position="stacked">{t('lye')}</IonLabel>
+          <IonLabel position="stacked" style={{ fontSize: '1.1em', fontWeight: '500' }}>{t('lye')}</IonLabel>
           <IonSelect 
             value={recipe.lyeType} 
             onIonChange={e => onUpdate({ lyeType: e.detail.value as LyeType })}
             interface="popover"
+            style={{ fontSize: '1.1em' }}
           >
             <IonSelectOption value="NaOH">{t('solidSoap')}</IonSelectOption>
             <IonSelectOption value="KOH">{t('liquidSoap')}</IonSelectOption>
@@ -78,13 +116,17 @@ const RecipeSettings: React.FC<RecipeSettingsProps> = ({ recipe, onUpdate }) => 
         {/* Ratio (Only for Mixed) */}
         {recipe.lyeType === 'Mixed' && (
            <IonItem>
-            <IonLabel position="stacked">{t('ratioKoh')}</IonLabel>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', marginBottom: '4px' }}>
+              <IonLabel position="stacked" style={{ fontSize: '1.1em', fontWeight: '500' }}>{t('ratioKoh')}</IonLabel>
+              <span style={{ fontSize: '1.2em', fontWeight: 'bold', color: 'var(--ion-color-primary)' }}>{recipe.ratioKoh}% KOH</span>
+            </div>
             <IonRange 
               min={0} 
               max={100} 
               pin={true} 
               value={recipe.ratioKoh || 0} 
               onIonChange={e => onUpdate({ ratioKoh: e.detail.value as number })}
+              className="ion-no-padding"
             >
               <IonLabel slot="start">0%</IonLabel>
               <IonLabel slot="end">100%</IonLabel>
@@ -94,13 +136,17 @@ const RecipeSettings: React.FC<RecipeSettingsProps> = ({ recipe, onUpdate }) => 
 
         {/* Superfat */}
         <IonItem>
-          <IonLabel position="stacked">{t('superFatLabel', { value: recipe.superFat })}</IonLabel>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', marginBottom: '4px' }}>
+            <IonLabel position="stacked" style={{ fontSize: '1.1em', fontWeight: '500' }}>{t('superFatLabel', { value: '' }).replace(':', '').trim()}</IonLabel>
+            <span style={{ fontSize: '1.2em', fontWeight: 'bold', color: 'var(--ion-color-primary)' }}>{recipe.superFat}%</span>
+          </div>
           <IonRange 
             min={0} 
             max={25} 
             pin={true} 
             value={recipe.superFat} 
             onIonChange={e => onUpdate({ superFat: e.detail.value as number })}
+            className="ion-no-padding"
           >
             <IonLabel slot="start">0%</IonLabel>
             <IonLabel slot="end">25%</IonLabel>
@@ -109,13 +155,17 @@ const RecipeSettings: React.FC<RecipeSettingsProps> = ({ recipe, onUpdate }) => 
 
         {/* Water Ratio */}
         <IonItem>
-          <IonLabel position="stacked">{t('waterRatioLabel', { value: recipe.waterRatio })}</IonLabel>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', marginBottom: '4px' }}>
+            <IonLabel position="stacked" style={{ fontSize: '1.1em', fontWeight: '500' }}>{t('waterRatioLabel', { value: '' }).replace(':', '').trim()}</IonLabel>
+            <span style={{ fontSize: '1.2em', fontWeight: 'bold', color: 'var(--ion-color-primary)' }}>{recipe.waterRatio}%</span>
+          </div>
           <IonRange 
             min={20} 
             max={50} 
             pin={true} 
             value={recipe.waterRatio} 
             onIonChange={e => onUpdate({ waterRatio: e.detail.value as number })}
+            className="ion-no-padding"
           >
             <IonLabel slot="start">20%</IonLabel>
             <IonLabel slot="end">50%</IonLabel>
@@ -124,7 +174,10 @@ const RecipeSettings: React.FC<RecipeSettingsProps> = ({ recipe, onUpdate }) => 
 
         {/* Fragrance Settings */}
         <IonItem>
-          <IonLabel position="stacked">{t('fragrance')} ({recipe.fragrance?.percentage || 0}%)</IonLabel>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', marginBottom: '4px' }}>
+            <IonLabel position="stacked" style={{ fontSize: '1.1em', fontWeight: '500' }}>{t('fragrance')}</IonLabel>
+            <span style={{ fontSize: '1.2em', fontWeight: 'bold', color: 'var(--ion-color-primary)' }}>{recipe.fragrance?.percentage || 0}%</span>
+          </div>
           <IonRange
             min={0}
             max={10}
@@ -138,6 +191,7 @@ const RecipeSettings: React.FC<RecipeSettingsProps> = ({ recipe, onUpdate }) => 
                 type: recipe.fragrance?.type || 'none'
               } 
             })}
+            className="ion-no-padding"
           >
             <IonLabel slot="start">0%</IonLabel>
             <IonLabel slot="end">10%</IonLabel>
